@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -33,7 +32,7 @@ const App = () => {
            
           <Route path="/test/:token" element={<Test/>} />
            
-          <Route path="/admin/ZXTY289!@jbyu" element={<Admin/>}/>
+          <Route path={`/admin/${process.env.REACT_APP_PASSWORD}`} element={<Admin/>}/>
         </Routes>
       </div>
     </Router>
