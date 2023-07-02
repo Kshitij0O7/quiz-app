@@ -33,7 +33,7 @@ const App = () => {
            
           <Route path="/test/:token" element={<Test/>} />
            
-          <Route path="/admin" element={<Admin/>}/>
+          <Route path="/admin/ZXTY289!@jbyu" element={<Admin/>}/>
         </Routes>
       </div>
     </Router>
