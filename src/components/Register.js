@@ -9,6 +9,15 @@ const Register = () => {
   const [notRegistered, setNotRegister] = useState(true);
   const [user, setUser] = useState({name:'', email:'', department:""});
   const dispatch = useDispatch();
+  const departments = [
+    { label: 'Software', value: 'software' },
+    { label: 'R&D', value: 'r&d' },
+    { label: 'Finance', value: 'finance' },
+    { label: 'Maintainance', value: 'maintainance' },
+    { label: 'Aviation', value: 'aviation' },
+    { label: 'Business', value: 'business' },
+    { label: 'Marketing', value: 'marketing' }
+  ];
 
   const handleNameChange = (e) => {
     setUser({name:e.target.value, email: user.email, department: user.department});
@@ -64,10 +73,22 @@ const Register = () => {
             <label className='text-gray-600 mt-4'>
               Department:
               <br/>
-              <input className=' border-2 border-black' type="text" value={user.department} onChange={handleDepartmentChange} />
+              {departments.map((department) => (
+                <label className='flex items-center gap-1 text-xs' key={department.value}>
+                  <input
+                    type="radio"
+                    name="department"
+                    value={department.value}
+                    //checked={selectedDepartment === department.value}
+                    onChange={handleDepartmentChange}
+                  />
+                  {department.label}
+                  <br/>
+                </label>
+              ))}
             </label>
             <br />
-            <button className='bg-blue-400 my-8' type="submit">Register</button>
+            <button className='bg-blue-400 my-3' type="submit">Register</button>
           </form>
           </div>
         </div>
