@@ -9,6 +9,9 @@ module.exports = {
       backgroundImage: {
         'tsaw': "url(/src/assets/images/tsaw_bgImage.png)"
       },
+    colors:{
+      "tblu": "#2e5baa" 
+    }
   },
   plugins: [],
   }

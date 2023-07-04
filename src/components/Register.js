@@ -53,42 +53,43 @@ const Register = () => {
       {/* <h2 className='flex justify-center text-5xl p-4'>Register</h2>
       <p className='flex justify-center text-2xl p-4'>Fill out the form for atempting the test</p> */}
       <div className='flex justify-center p-5 border-black border-0 '>
-        <div className=' h-auto bg-white relative'>
+        <div className=' h-auto bg-white relative rounded-lg p-4 my-11'>
           <span className='ml-2 top-2 text-xl'> Register</span>
           <img src={tsawLogo} className='inline object-contain h-9 absolute right-2 '/>
           <div className='flex justify-center'>
-          <form className='p-2 ' onSubmit={handleSubmit}>
-            <label className='text-gray-600 mt-4'>
+          <form className='p-2 leading-10' onSubmit={handleSubmit}>
+            <label className='text-gray-600 mt-4 '>
               Name:
               <br />
-              <input className=' border-2 border-black' type="text" value={user.name}  onChange={handleNameChange}/>
+              <input className=' border-2 border-gray-200 outline-none rounded-lg' type="text" value={user.name}  onChange={handleNameChange}/>
             </label>
             <br />
             <label className='text-gray-600 mt-4'>
               Email:
               <br/>
-              <input className=' border-2 border-black' type="email" value={user.email} onChange={handleEmailChange} />
+              <input className=' border-2 border-gray-200 outline-none rounded-lg' type="email" value={user.email} onChange={handleEmailChange} />
             </label>
             <br />
             <label className='text-gray-600 mt-4'>
               Department:
               <br/>
-              {departments.map((department) => (
-                <label className='flex items-center gap-1 text-xs' key={department.value}>
-                  <input
-                    type="radio"
-                    name="department"
-                    value={department.value}
-                    //checked={selectedDepartment === department.value}
-                    onChange={handleDepartmentChange}
-                  />
-                  {department.label}
-                  <br/>
-                </label>
-              ))}
+              <select
+                className='border-2 border-gray-200 outline-none rounded-md p-2'
+                onChange={handleDepartmentChange}
+              >
+                <option value="">Select Department</option>
+                {departments.map((department) => (
+                  <option key={department.value} value={department.value}>
+                    {department.label}
+                  </option>
+                ))}
+              </select>
+
             </label>
             <br />
-            <button className='bg-blue-400 my-3' type="submit">Register</button>
+            <div className='flex justify-center'>
+              <button className='bg-tblu text-white mt-4  px-4 rounded-lg mx-auto' type="submit">Register</button>
+            </div>
           </form>
           </div>
         </div>
