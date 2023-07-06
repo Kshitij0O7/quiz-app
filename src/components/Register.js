@@ -61,13 +61,23 @@ const Register = () => {
             <label className='text-gray-600 mt-4 '>
               Name:
               <br />
-              <input className=' border-2 border-gray-200 outline-none rounded-lg' type="text" value={user.name}  onChange={handleNameChange}/>
+              <input className=' border-2 border-gray-200 px-2 outline-none rounded-lg' 
+                type="text" 
+                value={user.name}  
+                placeholder='Your Name'
+                onChange={handleNameChange}
+              />
             </label>
             <br />
             <label className='text-gray-600 mt-4'>
               Email:
               <br/>
-              <input className=' border-2 border-gray-200 outline-none rounded-lg' type="email" value={user.email} onChange={handleEmailChange} />
+              <input className=' border-2 border-gray-200 px-2 outline-none rounded-lg'
+                type="email" 
+                value={user.email} 
+                placeholder='Your Email Address'
+                onChange={handleEmailChange}
+              />
             </label>
             <br />
             <label className='text-gray-600 mt-4'>
@@ -88,7 +98,7 @@ const Register = () => {
             </label>
             <br />
             <div className='flex justify-center'>
-              <button className='bg-tblu text-white mt-4  px-4 rounded-lg mx-auto' type="submit">Register</button>
+              <button className='bg-tblu text-white mt-5  px-4 rounded-lg mx-auto' type="submit">Register</button>
             </div>
           </form>
           </div>

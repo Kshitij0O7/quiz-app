@@ -12,7 +12,6 @@ import Timer from './Timer';
 
 const Test = () => {
   const { token } = useParams();
-  const [isValidToken, setIsValidToken] = useState(false);
   const [department, setDepartment] = useState("");
   const [email, setEmail] = useState("");
   const questions = useSelector((state) => state.questions);
@@ -23,35 +22,25 @@ const Test = () => {
   const dispatch = useDispatch();
   const {register, handleSubmit, watch} = useForm()
 
-  //let selectedOptions = [];
   /* 
   To verify if the token is valid and get the department 
   */
+  //setToken(useParams());
   useEffect(() => {
-    const verifyToken = async () => {
-      try {
-        const decodedToken = jwtDecode(token);
-        let _department = decodedToken.department;
-        let _email = decodedToken.email;
-        //console.log(Date.now());
-        //console.log(decodedToken.exp*1000);
-        if(Date.now()<decodedToken.exp*1000){
-        setIsValidToken(true);
-        setDepartment(_department);
-        setEmail(_email);
-        }
-      } catch (error) {
-        console.log('Token verification error:', error);
-        setIsValidToken(false);
-        //console.log("expired")
-      }
-    };
-    verifyToken();
+    dispatch(getQuestions(token));   
+    try {
+      const decodedToken = jwtDecode(token);
+      let _department = decodedToken.department;
+      let _email = decodedToken.email;
+      setDepartment(_department);
+      setEmail(_email);
+    } catch (error) {
+      console.log(error);
+    }
   }, [token]);
 
-  //fetch department questions
-  useEffect(() => {
-    department&&dispatch(getQuestions(department));
+  useEffect(()=>{
+    department&&dispatch(getQuestions(token));
   }, [department]);
 
   const renderOptions = (options, index) => {
@@ -107,7 +96,7 @@ const Test = () => {
 
   return (
     <div className='bg-zinc-100 h-auto'>
-      {isValidToken ? (
+      {questions.length != 0 ? (
         //<h4>Test is Happening for {department}!</h4> 
         <div >
           {notSubmitted ?(
@@ -145,21 +134,21 @@ const Test = () => {
               </form>          
             </div>  
           ):(
-            <div className='h-screen'>
+            <div className='h-screen flex flex-col justify-center items-center'>
               <div className='flex justify-center'>
-              <h2 className='text-5xl '>Test is Completed</h2>
-              {/* <br/>
-              <h4 className='text-3xl'>Results would be shared soon</h4> */}
+                <h2 className='text-5xl '>Test is Completed</h2>
               </div>
               <br/>
               <div className='flex justify-center'>
-              <h4 className='text-3xl'>Your results would be shared soon</h4>
+                <h4 className='text-3xl'>Your results would be shared soon</h4>
               </div>
-            </div>
+            </div>           
           )}
        </div>
       ) : (
-        <p className='h-screen text-xl'>Link is either Invalid or Expired. Please check your token or contact support.</p>
+        <div className='flex justify-center items-center h-screen'>
+          <span className='text-xl font-extrabold'>Link is either Invalid or Expired. Please check your token or contact support.</span>
+        </div>
       )}
     </div>
   );
