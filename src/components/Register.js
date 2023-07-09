@@ -106,10 +106,17 @@ const Register = () => {
       </div>
       </div>
     ):(
-      <div>
-        <p className='flex justify-center text-5xl p-8'>Registeration Successful</p>
-        <p className='flex justify-center text-2xl p-8 gap-2 m-auto'>You will recieve the test link via <GrMailOption/></p>
-      </div>
+      <div className='h-screen flex flex-col justify-center items-center'>
+              <GrMailOption size={54}/>
+              <br/>
+              <div className='flex justify-center'>
+                <h2 className='text-5xl '>Registration Successful</h2>
+              </div>
+              <br/>
+              <div className='flex justify-center'>
+                <h4 className='text-3xl'>You will recieve the test link via Email</h4>
+              </div>
+            </div> 
       )}
     </div>
   );

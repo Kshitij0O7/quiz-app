@@ -4,15 +4,21 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    data: {
+      checked: 'ui~="checked"',
+    },
     extend: {
-      gridTemplateRows: ['hover', 'focus'],
       backgroundImage: {
         'tsaw': "url(/src/assets/images/tsaw_bgImage.png)"
       },
     colors:{
-      "tblu": "#2e5baa" 
+      "tblu": "#2e5baa", 
+      "blue": {
+        "500": '#3b82f6', // Change to desired background color
+      },
     }
   },
+  
   plugins: [],
   }
 }

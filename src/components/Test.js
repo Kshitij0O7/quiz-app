@@ -8,6 +8,7 @@ import { Alert } from "@material-tailwind/react";
 import { getQuestions } from '../actions/questions';
 import { updateScore } from '../actions/users';
 import Timer from './Timer';
+import RenderOptions from './Options';
 
 
 const Test = () => {
@@ -44,25 +45,33 @@ const Test = () => {
   }, [department]);
 
   const renderOptions = (options, index) => {
-    // Shuffle the options array
-    const shuffledOptions = options.sort(() => Math.random() - 0.5);
-    // Take the first three options
-    const selectedOptions = shuffledOptions.slice(0, 4);
+    let state = watch(options.index)
+    console.log(options);
+    console.log(state,"<<<");
+
+    // const handleOptionChange = (optionIndex, value) => {
+    //   options.onOptionChange(optionIndex, value);
+    // };
    
     //renders the options according to the index
-    return selectedOptions.map((option, _index) => (
-      <div className='flex items-center gap-2 text-xs' key={`option-${_index}`}>
-        <input 
-        type="radio" 
-        id={`option-${index}${_index}`} 
-        name={`question-${index}`} 
-        value={option} 
-        {...register(`${index}`)}
-        />{option}
-        {/* {console.log(index)} */}
-        <label htmlFor={`option-${index}-${_index}`}></label>
-      </div>
-    ))
+    return options.map((option, _index) => (
+      <div className='flex items-center text-xs' key={`option-${_index}`}>
+        <div className={`flex relative rounded-lg flex-1 m-1 ${state[index]!==option ? "bg-gray-200": "bg-blue-400 text-white"}`}>
+          <div className='p-2'>{option}</div>
+            <input 
+            type="radio" 
+            id={`option-${index}${_index}`} 
+            name={`question-${index}`} 
+            value={option} 
+            className='flex-1 opacity-0 absolute w-full h-full inset-0'
+            //style={{ display: 'none' }}
+            {...register(`${index}`)}
+            //onChange={() => handleOptionChange(options.index, option)}
+            />
+            <label htmlFor={` option-${index}-${_index}`}></label>
+        </div>
+      </div> 
+    ))    
   };
 
   /*
@@ -114,21 +123,27 @@ const Test = () => {
               <form onSubmit={handleSubmit(handle_Submit)}>
                 {questions.map((question, index) => (
                   <div className='flex justify-center'>
-                    <div key={`question-${index}`} className=' box-border w-1/2 m-3 border-0 bg-white p-3'>
-                      <div className='flex'>
-                        <h3 className = 'text-gray-400 text-xs' style={{marginBlock:'auto'}}>Question {index + 1}:</h3>
-                        <p className='text-xs'>{question.questionAsked}</p>
+                    
+                    <div key={`question-${index}`} className='box-border h-fit w-1/2 m-3 border-0 bg-white p-3 rounded-2xl'>
+                      <div className='flex flex-col justify-center'>
+                        <div className='flex justify-center'>
+                          <h3 className = 'text-gray-400 text-xs' style={{marginBlock:'auto'}}>Question {index + 1}:</h3>
+                        </div>
+                        <div className='flex justify-center'>
+                        <p className='text-md font-extrabold text-center'>{question.questionAsked}</p>
+                        </div>
                       </div>
-                      <div className=' p-2 text-xs leading-6'>
+                      <div className='p-2 text-xs leading-5'>
                         {renderOptions(question.options, index+1)}
+                        {/* <RenderOptions options = {question.options} index = {index+1} register={register}/> */}
                       </div>
                           {/* <br /> */}
                     </div>
                   </div>
               ))}
                 <div className='flex justify-center p-2 '>
-                  <div className='flex justify-center w-1/2 bg-blue-500 '>
-                    <button className='my-8' type="submit">Finish Exam</button>
+                  <div className='flex justify-center rounded-2xl w-1/2 bg-blue-500 '>
+                    <button className='my-8 flex-1 text-white' type="submit">Finish Exam</button>
                   </div>
                 </div>
               </form>          
