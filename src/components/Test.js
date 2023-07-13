@@ -46,8 +46,8 @@ const Test = () => {
 
   const renderOptions = (options, index) => {
     let state = watch(options.index)
-    console.log(options);
-    console.log(state,"<<<");
+    // console.log(options);
+    // console.log(state,"<<<");
 
     // const handleOptionChange = (optionIndex, value) => {
     //   options.onOptionChange(optionIndex, value);
@@ -105,7 +105,7 @@ const Test = () => {
 
   return (
     <div className='bg-zinc-100 h-auto'>
-      {questions.length != 0 ? (
+      {questions.length !== 0 ? (
         //<h4>Test is Happening for {department}!</h4> 
         <div >
           {notSubmitted ?(
