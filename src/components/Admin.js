@@ -54,9 +54,6 @@ const Admin = () => {
 
   return (
     <div>
-      <h1 className="underline">
-      Hello world!
-    </h1>
       <h2>Admin Dashboard</h2>
       <p>Fill out the form to add new question:</p>
       <form onSubmit={handleSubmit}>
