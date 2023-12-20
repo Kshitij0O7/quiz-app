@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000';
+const url = 'https://quiz-backend-peach.vercel.app';
 
 export const fetchUsers = () => axios.get(`${url}/user`);
 export const fetchUsersByDepartment = (department) => axios.get(`${url}/user/${department}`)

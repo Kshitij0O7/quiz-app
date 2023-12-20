@@ -55,7 +55,7 @@ const Register = () => {
       <div className='flex justify-center p-5 border-black border-0 '>
         <div className=' h-auto bg-white relative rounded-lg p-4 my-11'>
           <span className='ml-2 top-2 text-xl'> Register</span>
-          <img src={tsawLogo} className='inline object-contain h-9 absolute right-2 '/>
+          <img src='quiz.jpeg' className='inline object-contain h-9 absolute right-2 '/>
           <div className='flex justify-center'>
           <form className='p-2 leading-10' onSubmit={handleSubmit}>
             <label className='text-gray-600 mt-4 '>
